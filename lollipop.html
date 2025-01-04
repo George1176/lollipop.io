@@ -1,73 +1,59 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alertă Virus</title>
+    <title>Virus Alert</title>
     <style>
-        /* Preloader */
-        #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .popup-content {
+        body {
             background-color: red;
-            padding: 50px;
-            border-radius: 10px;
-            font-size: 28px;
-            font-weight: bold;
             color: white;
+            font-family: Arial, sans-serif;
             text-align: center;
+            padding-top: 200px;
         }
-
-        .popup-button {
-            margin-top: 20px;
-            padding: 10px 20px;
+        h1 {
+            font-size: 50px;
+            color: yellow;
+        }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
             background-color: black;
             color: white;
-            border: none;
+            border: 5px solid red;
             font-size: 20px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .popup-button:hover {
-            background-color: darkred;
-        }
-
-        /* Body content - this will be hidden initially */
-        body {
-            visibility: hidden;
+            z-index: 9999;
         }
     </style>
 </head>
 <body>
-
-    <!-- Preloader and popup -->
-    <div id="preloader">
-        <div class="popup-content">
-            <p>ALERTĂ! Computatorul tău a fost infectat cu viruși!</p>
-            <p>Te rugăm să acționezi imediat!</p>
-            <button class="popup-button" onclick="closePopup()">Închide</button>
-        </div>
-    </div>
+    <h1>ALERT! VIRUS DETECTED!</h1>
+    <h2>Your computer has been infected with multiple viruses.</h2>
+    <div class="popup">VIRUS DETECTED! SYSTEM CRITICAL!</div>
 
     <script>
-        // Funcție pentru închiderea popup-ului
-        function closePopup() {
-            document.getElementById('preloader').style.display = 'none';
-            document.body.style.visibility = 'visible'; // Vizibilizează corpul paginii
+        function showPopup() {
+            alert("ALERT! VIRUS DETECTED! Your system is compromised!");
+            setTimeout(showPopup, 500); // Pop-up every 500ms
         }
-    </script>
+        function triggerPopups() {
+            for (let i = 0; i < 10; i++) {
+                showPopup();
+            }
+        }
+        setTimeout(triggerPopups, 2000); // Start pop-ups after 2 seconds
 
+        // Continuously create fake virus messages
+        setInterval(() => {
+            const div = document.createElement("div");
+            div.classList.add("popup");
+            div.textContent = "VIRUS DETECTED! SYSTEM WARNING!";
+            document.body.appendChild(div);
+        }, 1000); // Add a new "VIRUS" message every 1 second
+    </script>
 </body>
 </html>
