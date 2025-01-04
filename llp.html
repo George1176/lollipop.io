@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virus Alert</title>
+    <style>
+        body {
+            background-color: red;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 200px;
+        }
+        h1 {
+            font-size: 50px;
+            color: yellow;
+        }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: black;
+            color: white;
+            border: 5px solid red;
+            font-size: 20px;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <h1>ALERT! VIRUS DETECTED!</h1>
+    <h2>Your computer has been infected with multiple viruses.</h2>
+    <div class="popup">VIRUS DETECTED! SYSTEM CRITICAL!</div>
+
+    <script>
+        function showPopup() {
+            alert("ALERT! VIRUS DETECTED! Your system is compromised!");
+            setTimeout(showPopup, 500); // Pop-up every 500ms
+        }
+        function triggerPopups() {
+            for (let i = 0; i < 10; i++) {
+                showPopup();
+            }
+        }
+        setTimeout(triggerPopups, 2000); // Start pop-ups after 2 seconds
+
+        // Continuously create fake virus messages
+        setInterval(() => {
+            const div = document.createElement("div");
+            div.classList.add("popup");
+            div.textContent = "VIRUS DETECTED! SYSTEM WARNING!";
+            document.body.appendChild(div);
+        }, 1000); // Add a new "VIRUS" message every 1 second
+    </script>
+</body>
+</html>
